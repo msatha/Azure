@@ -1,7 +1,7 @@
 
 function InviteAzGuestUser($tenant,$inviteEmailAddress){
 
-    $invitationRedirectURL = "https://pimsdb.sharepoint.com"
+    $invitationRedirectURL = "https://"+$tenant.tenantName
     $inviteBody = @{"invitedUserEmailAddress" = $inviteEmailAddress; "inviteRedirectUrl"= $invitationRedirectURL; "sendInvitationMessage"= $false}
     $inviteBody = $inviteBody | ConvertTo-Json
 
@@ -19,7 +19,8 @@ function InviteAzGuestUser($tenant,$inviteEmailAddress){
         'Content-Type'  = "application/json"
     } -Uri $apiUrl -Method POST  -Body $inviteBody
 
-  
     return $invite
 }
 
+#$tenant = @{tenantName="contoso.onmicrosoft.com";clientId="";clientSecret="";domains=@("contoso.onmicrosoft.com","contoso.com") }
+#$invitedUser = InviteAzGuestUser $tenant "emailAddress"
