@@ -1,1 +1,1 @@
-# Azure
+# Azure Graph API samples
